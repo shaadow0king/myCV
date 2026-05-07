@@ -10984,3 +10984,16 @@ section.resume-section .resume-section-content {
 .icon-dark {
   filter: brightness(0%) contrast(100%);
 }
+/* =========================================
+   Настройки переключения языков (RU / EN)
+   ========================================= */
+
+/* Если на body установлен класс ru, полностью скрываем все элементы с английским классом */
+body.ru .lang-en {
+    display: none !important;
+}
+
+/* Если на body установлен класс en, полностью скрываем все элементы с русским классом */
+body.en .lang-ru {
+    display: none !important;
+}
