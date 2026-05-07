@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -7,131 +7,261 @@
         <meta name="author" content="" />
         <title>Resume</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body id="page-top">
-        <!-- Language Switch Button -->
+    <body id="page-top" class="ru">
         <div style="text-align: right; margin: 20px;">
-          <a href="index-en.html" class="btn btn-outline-secondary">EN</a>
+          <button id="lang-btn" onclick="toggleLanguage()" class="btn btn-outline-secondary">EN</button>
         </div>
-        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">Геворк Акопян</span>
+                <span class="d-block d-lg-none">
+                    <span class="lang-ru">Геворк Акопян</span>
+                    <span class="lang-en">Gevork Akopyan</span>
+                </span>
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">О себе</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Опыт</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Навыки</a></li>
-                    
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">
+                        <span class="lang-ru">О себе</span>
+                        <span class="lang-en">About</span>
+                    </a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">
+                        <span class="lang-ru">Опыт</span>
+                        <span class="lang-en">Experience</span>
+                    </a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">
+                        <span class="lang-ru">Навыки</span>
+                        <span class="lang-en">Skills</span>
+                    </a></li>
                 </ul>
             </div>
         </nav>
-        <!-- Page Content-->
         <div class="container-fluid p-0">
-            <!-- о Себе -->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <h1 class="mb-0">
-                        Гево́рк
-                        <span class="text-primary">Акопян</span>
+                        <span class="lang-ru">Гево́рк</span>
+                        <span class="lang-en">Gevork</span>
+                        <span class="text-primary">
+                            <span class="lang-ru">Акопян</span>
+                            <span class="lang-en">Akopyan</span>
+                        </span>
                     </h1>
                     <div class="subheading mb-5">
-                        Сербия · Нови Сад
+                        <span class="lang-ru">Сербия · Нови Сад</span>
+                        <span class="lang-en">Serbia · Novi Sad</span>
                     </div>
-                    <p class="lead mb-5">Внимательный и ответственный тестировщик мобильных игр с более чем 3х-летним опытом в ручном тестировании.
-                        Тестирую приложения на Android, iOS, Huawei, Amazon и UWP.
-                        Оцениваю стабильность, воспроизводимость и влияние ошибок на пользовательский опыт и игровой процесс.
-                        Уделяю внимание UX/UI и логике игровых механик. Приоритизирую баги и предлагаю решения, способствующие выпуску более качественного продукта.</p>
-                    <p class="lead mb-5">Но чаще всего на что-то жму и всё ломается. </p>
+                    <p class="lead mb-5">
+                        <span class="lang-ru">Внимательный и ответственный тестировщик мобильных игр с более чем 3х-летним опытом в ручном тестировании. Тестирую приложения на Android, iOS, Huawei, Amazon и UWP. Оцениваю стабильность, воспроизводимость и влияние ошибок на пользовательский опыт и игровой процесс. Уделяю внимание UX/UI и логике игровых механик. Приоритизирую баги и предлагаю решения, способствующие выпуску более качественного продукта.</span>
+                        <span class="lang-en">Attentive and responsible mobile game tester with over 3 years of experience in manual testing. I test applications on Android, iOS, Huawei, Amazon, and UWP. I evaluate stability, reproducibility, and the impact of bugs on the user experience and gameplay. I pay close attention to UX/UI and game mechanics logic. I prioritize bugs and propose solutions that contribute to releasing a higher quality product.</span>
+                    </p>
+                    <p class="lead mb-5">
+                        <span class="lang-ru">Но чаще всего на что-то жму и всё ломается.</span>
+                        <span class="lang-en">But most of the time I just press something and everything breaks.</span>
+                    </p>
                     <div class="social-icons">
                         <a class="social-icon" href="https://www.linkedin.com/in/gevork-akopyan-066948247/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a class="social-icon" href="https://t.me/dduck0" target="_blank"><i class="fab fa-telegram-plane"></i></a>
                         <a class="social-icon" href="mailto:Im.gework@gmail.com"><i class="fas fa-envelope"></i></a>
                     </div>
+                </div>
             </section>
             <hr class="m-0" />
-            <!-- Опыт работы-->
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Опыт</h2>
+                    <h2 class="mb-5">
+                        <span class="lang-ru">Опыт</span>
+                        <span class="lang-en">Experience</span>
+                    </h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">QA Engineer</h3>
                             <div class="subheading mb-3">DominiGames</div>
                             <ul>
-                             <li>Ручное функциональное и нефункциональное тестирование (android/iOS)</li>
-                             <li>Alfa/Beta тестирование проектов</li>
-                             <li>Работа с аналитикой Firebase</li>
-                             <li>Ведение отчетности и тест-планов</li>
-                             <li>Сборка build проектов на Jenkins</li>
-                             <li>Оформление баг-репортов в системе баг-трекинга Redmine</li>
-                             <li>Взаимодействие с репозиториями системы контроля версий (SvN)</li>
-                             <li>Работа с Helpdesk, отслеживание жалоб пользователей</li>
-                             <li>роведение различных видов тестирования </li>
-                             <li>Обучение стажеров для QA Junior</li>
+                             <li>
+                                <span class="lang-ru">Ручное функциональное и нефункциональное тестирование (android/iOS)</span>
+                                <span class="lang-en">Manual functional and non-functional testing (Android/iOS)</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Alfa/Beta тестирование проектов</span>
+                                <span class="lang-en">Alpha/Beta testing of projects</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Работа с аналитикой Firebase</span>
+                                <span class="lang-en">Working with Firebase analytics</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Ведение отчетности и тест-планов</span>
+                                <span class="lang-en">Reporting and maintaining test plans</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Сборка build проектов на Jenkins</span>
+                                <span class="lang-en">Assembling project builds on Jenkins</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Оформление баг-репортов в системе баг-трекинга Redmine</span>
+                                <span class="lang-en">Writing bug reports in the Redmine bug tracking system</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Взаимодействие с репозиториями системы контроля версий (SvN)</span>
+                                <span class="lang-en">Interacting with SVN version control repositories</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Работа с Helpdesk, отслеживание жалоб пользователей</span>
+                                <span class="lang-en">Working with Helpdesk, tracking user complaints</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Проведение различных видов тестирования</span>
+                                <span class="lang-en">Conducting various types of testing</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Обучение стажеров для QA Junior</span>
+                                <span class="lang-en">Training interns for QA Junior roles</span>
+                             </li>
+                            </ul>
                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Март 2022 - Апрель 2023</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">
+                            <span class="lang-ru">Март 2022 - Апрель 2023</span>
+                            <span class="lang-en">March 2022 - April 2023</span>
+                        </span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">QA Specialist</h3>
                             <div class="subheading mb-3">Playgendary</div>
                             <ul>
-                             <li>Мануальное тестирование на платформах Android и iOS</li>
-                             <li>Тестирование аналитики и работа с сырыми данными (Adjust)</li>
-                             <li>Работа с аналитикой и создание конфигураций в Firebase</li>
-                             <li>Выявление дефектов в проектах с KPI 60+ багов в месяц</li>
-                             <li>Установка, логирование, проверка состояния и характеристик билдов в Android Studio и Xcode</li>
-                             <li>Оформление баг-репортов в системе таск-менеджера Asana</li>
-                             <li>Взаимодействие с системой контроля версий (Git)</li>
-                             <li>Разработка и обновление тестовой документации в TestRail</li>
-                             <li>Выпуск проектов в прод и последующий мониторинг их состояния</li>
+                             <li>
+                                <span class="lang-ru">Мануальное тестирование на платформах Android и iOS</span>
+                                <span class="lang-en">Manual testing on Android and iOS platforms</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Тестирование аналитики и работа с сырыми данными (Adjust)</span>
+                                <span class="lang-en">Analytics testing and working with raw data (Adjust)</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Работа с аналитикой и создание конфигураций в Firebase</span>
+                                <span class="lang-en">Working with analytics and creating configurations in Firebase</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Выявление дефектов в проектах с KPI 60+ багов в месяц</span>
+                                <span class="lang-en">Identifying defects in projects with a KPI of 60+ bugs per month</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Установка, логирование, проверка состояния и характеристик билдов в Android Studio и Xcode</span>
+                                <span class="lang-en">Installing, logging, checking the status and characteristics of builds in Android Studio and Xcode</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Оформление баг-репортов в системе таск-менеджера Asana</span>
+                                <span class="lang-en">Writing bug reports in the Asana task manager</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Взаимодействие с системой контроля версий (Git)</span>
+                                <span class="lang-en">Interacting with the Git version control system</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Разработка и обновление тестовой документации в TestRail</span>
+                                <span class="lang-en">Developing and updating test documentation in TestRail</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Выпуск проектов в прод и последующий мониторинг их состояния</span>
+                                <span class="lang-en">Releasing projects to production and subsequent monitoring of their status</span>
+                             </li>
                             </ul>                  
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Апрель 2023 - Август 2023</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">
+                            <span class="lang-ru">Апрель 2023 - Август 2023</span>
+                            <span class="lang-en">April 2023 - August 2023</span>
+                        </span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">QA Specialist</h3>
                             <div class="subheading mb-3">Playrix</div>
                             <ul>
-                             <li>Выполнение ручного тестирования на iOS, Android, Amazon, Huawei, Windows</li>
-                             <li>Проверка проектной документации, вычитка и анализ требований по ТЗ</li>
-                             <li>Составление декомпозиционных кейсов для тестирования продукта на соответствие ТЗ</li>
-                             <li>Написание тестовой документации (тест-кейсы, чек листы, планы тестирования)</li>
-                             <li>Составление отчетов об ошибках (Asana)</li>
-                             <li>Проведение A/B-тестирования</li>
-                             <li>Тестирование аналитических событий в Amplitude\Swrve</li>
-                             <li>Тестирование серверной и клиентской игровой логики</li>
-                             <li>Участие в регрессионном тестировании для релиза продукта</li>
-                             <li>Отслеживание трафика, перехват и подмена запросов с помощью Charles proxy</li>
-                             <li>Анализ сбоев и нефатальных ошибок в Sentry</li>
-                             <li>Внесение изменений на тестовые серверы с помощью Git-запросов для подготовки тестового окружения и настройки событий</li>
+                             <li>
+                                <span class="lang-ru">Выполнение ручного тестирования на iOS, Android, Amazon, Huawei, Windows</span>
+                                <span class="lang-en">Performing manual testing on iOS, Android, Amazon, Huawei, Windows</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Проверка проектной документации, вычитка и анализ требований по ТЗ</span>
+                                <span class="lang-en">Reviewing project documentation, proofreading and analyzing requirements according to tech specs</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Составление декомпозиционных кейсов для тестирования продукта на соответствие ТЗ</span>
+                                <span class="lang-en">Creating decomposition cases to test the product for compliance with specifications</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Написание тестовой документации (тест-кейсы, чек листы, планы тестирования)</span>
+                                <span class="lang-en">Writing test documentation (test cases, checklists, test plans)</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Составление отчетов об ошибках (Asana)</span>
+                                <span class="lang-en">Creating bug reports (Asana)</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Проведение A/B-тестирования</span>
+                                <span class="lang-en">Conducting A/B testing</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Тестирование аналитических событий в Amplitude\Swrve</span>
+                                <span class="lang-en">Testing analytical events in Amplitude/Swrve</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Тестирование серверной и клиентской игровой логики</span>
+                                <span class="lang-en">Testing server and client game logic</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Участие в регрессионном тестировании для релиза продукта</span>
+                                <span class="lang-en">Participating in regression testing for product release</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Отслеживание трафика, перехват и подмена запросов с помощью Charles proxy</span>
+                                <span class="lang-en">Traffic monitoring, intercepting and modifying requests using Charles Proxy</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Анализ сбоев и нефатальных ошибок в Sentry</span>
+                                <span class="lang-en">Analyzing crashes and non-fatal errors in Sentry</span>
+                             </li>
+                             <li>
+                                <span class="lang-ru">Внесение изменений на тестовые серверы с помощью Git-запросов для подготовки тестового окружения и настройки событий</span>
+                                <span class="lang-en">Applying changes to test servers using Git requests to prepare the test environment and configure events</span>
+                             </li>
                             </ul>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Октябрь 2023 - Май 2025</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">
+                            <span class="lang-ru">Октябрь 2023 - Май 2025</span>
+                            <span class="lang-en">October 2023 - May 2025</span>
+                        </span></div>
                     </div>
                 </div>
             </section>
                  <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
-                       <a href="assets/files/CV.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i><i class="fas fa-download" style="margin-left: 4px;"></i><span style="margin-left: 8px;">Тут резюме на русском</span></a>
-                       <a href="assets/files/CV-en.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i><i class="fas fa-download" style="margin-left: 4px;"></i><span style="margin-left: 8px;">Тут резюме на английском</span></a>
+                       <a href="assets/files/CV.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i><i class="fas fa-download" style="margin-left: 4px;"></i><span style="margin-left: 8px;">
+                        <span class="lang-ru">Тут резюме на русском</span>
+                        <span class="lang-en">Resume in Russian</span>
+                       </span></a>
+                       <a href="assets/files/CV-en.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf"></i><i class="fas fa-download" style="margin-left: 4px;"></i><span style="margin-left: 8px;">
+                        <span class="lang-ru">Тут резюме на английском</span>
+                        <span class="lang-en">Resume in English</span>
+                       </span></a>
                  </div>
             <hr class="m-0" />
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Навыки</h2>
-                    <div class="subheading mb-3">Инструменты и сервисы</div>
+                    <h2 class="mb-5">
+                        <span class="lang-ru">Навыки</span>
+                        <span class="lang-en">Skills</span>
+                    </h2>
+                    <div class="subheading mb-3">
+                        <span class="lang-ru">Инструменты и сервисы</span>
+                        <span class="lang-en">Tools and Services</span>
+                    </div>
                     <div class="icon-grid">
                       <div class="icon-item">
                         <img src="assets/icons/charles.svg" alt="Charles Proxy">
@@ -194,32 +324,49 @@
                         <span>Coda</span>
                       </div>
                     </div>
-                    <!--
-                    <div class="subheading mb-3">здесь потом доделать блок со скиллами или курсами пройденными</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            test design
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            cross browser testing & debugging
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                           debugging errors
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            ux\ui tests
-                        </li>
-                    </ul>
                 </div>
             </section>
             <hr class="m-0" />
-        <!-- Bootstrap core JS-->
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const body = document.body;
+                const btn = document.getElementById('lang-btn');
+                
+                // Проверяем, есть ли сохраненный язык в памяти браузера
+                const savedLang = localStorage.getItem('siteLanguage') || 'ru';
+                
+                // Устанавливаем сохраненный язык при загрузке страницы
+                if (savedLang === 'en') {
+                    body.classList.replace('ru', 'en');
+                    btn.textContent = 'RU';
+                    document.documentElement.lang = 'en';
+                } else {
+                    btn.textContent = 'EN';
+                    document.documentElement.lang = 'ru';
+                }
+            });
+
+            function toggleLanguage() {
+                const body = document.body;
+                const btn = document.getElementById('lang-btn');
+
+                if (body.classList.contains('ru')) {
+                    body.classList.replace('ru', 'en');
+                    btn.textContent = 'RU';
+                    document.documentElement.lang = 'en';
+                    localStorage.setItem('siteLanguage', 'en'); // Сохраняем выбор
+                } else {
+                    body.classList.replace('en', 'ru');
+                    btn.textContent = 'EN';
+                    document.documentElement.lang = 'ru';
+                    localStorage.setItem('siteLanguage', 'ru'); // Сохраняем выбор
+                }
+            }
+        </script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
 </html>
