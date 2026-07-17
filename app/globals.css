@@ -6,8 +6,8 @@
   --surface-raised: #122a3b;
   --surface-soft: #0a1721;
   --text: #f4f8fc;
-  --muted: #a7b6c6;
-  --subtle: #72869a;
+  --muted: #bac8d5;
+  --subtle: #91a5b7;
   --accent: #78c9f0;
   --accent-bright: #c5ebfc;
   --accent-soft: rgba(120, 201, 240, 0.12);
@@ -15,7 +15,7 @@
   --secondary-soft: rgba(143, 174, 232, 0.1);
   --line: #253c4c;
   --line-bright: #3a5a70;
-  --max-width: 1120px;
+  --max-width: 1220px;
   --radius: 22px;
   --radius-small: 14px;
 }
@@ -92,7 +92,7 @@ summary {
   align-items: center;
   min-width: 0;
   gap: 10px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 820;
 }
 
@@ -121,7 +121,7 @@ summary {
   padding-top: 7px;
   border-top: 1px solid rgba(58, 90, 112, 0.42);
   color: var(--muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -155,7 +155,7 @@ summary {
   padding: 6px 8px;
   background: transparent;
   color: var(--subtle);
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 900;
   cursor: pointer;
 }
@@ -237,8 +237,8 @@ summary {
   border-radius: var(--radius-small);
   background: rgba(8, 20, 29, 0.72);
   color: var(--accent-bright);
-  font-size: 10px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.55;
   font-style: italic;
 }
 
@@ -261,7 +261,7 @@ summary {
 .section-tag {
   margin: 0;
   color: var(--accent);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -286,8 +286,9 @@ h2 em {
   max-width: 510px;
   margin: 17px auto 0;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.58;
+  font-size: 16px;
+  line-height: 1.62;
+  font-weight: 450;
 }
 
 .hero-actions {
@@ -302,11 +303,11 @@ h2 em {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: 0 16px;
+  min-height: 46px;
+  padding: 0 19px;
   border: 1px solid var(--line-bright);
   border-radius: 12px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 850;
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
 }
@@ -340,7 +341,8 @@ h2 em {
 }
 
 .focus-item {
-  padding: 11px 12px;
+  min-height: 90px;
+  padding: 14px 15px;
   border: 1px solid var(--line);
   border-radius: 10px;
   background: rgba(8, 20, 29, 0.55);
@@ -350,16 +352,17 @@ h2 em {
 .focus-item strong {
   display: block;
   color: var(--text);
-  font-size: 9px;
-  line-height: 1.35;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .focus-item span {
   display: block;
   margin-top: 4px;
   color: var(--subtle);
-  font-size: 7px;
-  line-height: 1.4;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 500;
 }
 
 .page-section {
@@ -393,8 +396,9 @@ h2 {
   max-width: 520px;
   margin: 14px 0 0;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.65;
+  font-weight: 450;
 }
 
 .timeline {
@@ -456,7 +460,7 @@ h2 {
 .date {
   margin: 0;
   color: var(--subtle);
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 850;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -479,7 +483,7 @@ h2 {
 
 .company {
   color: var(--secondary);
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 900;
 }
 
@@ -489,7 +493,7 @@ h2 {
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent-bright);
-  font-size: 6px;
+  font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -507,8 +511,9 @@ h2 {
   position: relative;
   padding-left: 13px;
   color: var(--muted);
-  font-size: 9px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 450;
 }
 
 .duties li::before {
@@ -533,7 +538,7 @@ h2 {
   gap: 12px;
   padding-top: 12px;
   color: var(--accent-bright);
-  font-size: 8px;
+  font-size: 13px;
   font-weight: 850;
   letter-spacing: 0.05em;
   cursor: pointer;
@@ -610,12 +615,12 @@ h2 {
 
 .skill-number {
   color: var(--accent);
-  font: 900 8px ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 900 12px ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 .skill-card h3 {
   margin: 22px 0 0;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 830;
   letter-spacing: -0.025em;
 }
@@ -623,16 +628,17 @@ h2 {
 .skill-card p {
   margin: 9px 0 0;
   color: var(--muted);
-  font-size: 9px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 450;
 }
 
 .skill-card strong {
   display: block;
   margin-top: 5px;
   color: var(--secondary);
-  font-size: 9px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.65;
   font-weight: 780;
 }
 
@@ -660,8 +666,8 @@ h2 {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  min-height: 56px;
-  padding: 12px 14px;
+  min-height: 68px;
+  padding: 15px 17px;
   border: 1px solid var(--line);
   border-radius: 11px;
   background: rgba(8, 20, 29, 0.56);
@@ -678,14 +684,15 @@ h2 {
 .contact-button strong {
   display: block;
   color: var(--text);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .contact-button small {
   display: block;
   margin-top: 3px;
   color: var(--subtle);
-  font-size: 8px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .contact-button b {
@@ -700,7 +707,7 @@ h2 {
 footer {
   padding: 24px 0 30px;
   color: var(--subtle);
-  font-size: 8px;
+  font-size: 11px;
   text-align: center;
 }
 
@@ -720,7 +727,7 @@ footer {
   }
 
   .identity {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .identity-avatar {
@@ -734,7 +741,7 @@ footer {
     margin-left: auto;
     padding: 0;
     border: 0;
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .language-switch {
@@ -758,7 +765,7 @@ footer {
 
   .quote {
     max-width: 230px;
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .hero-content {
@@ -771,7 +778,7 @@ footer {
 
   .hero-intro {
     margin-left: 0;
-    font-size: 14px;
+    font-size: 17px;
   }
 
   .hero-actions {
@@ -779,7 +786,7 @@ footer {
   }
 
   .focus-strip {
-    width: min(100%, 600px);
+    width: min(100%, 680px);
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -859,11 +866,11 @@ footer {
   }
 
   .position-row h3 {
-    font-size: 23px;
+    font-size: 24px;
   }
 
   .duties li {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .skills-grid {
@@ -872,18 +879,18 @@ footer {
   }
 
   .skill-card {
-    min-height: 230px;
-    padding: 24px;
+    min-height: 260px;
+    padding: 26px;
   }
 
   .skill-card h3 {
     margin-top: 34px;
-    font-size: 19px;
+    font-size: 22px;
   }
 
   .skill-card p,
   .skill-card strong {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .contact-card .section-inner {
@@ -891,7 +898,7 @@ footer {
   }
 
   .contact-copy {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .contact-layout {
