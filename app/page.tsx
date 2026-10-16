@@ -294,6 +294,32 @@ function JobProjects({ job, language }: { job: Job; language: Language }) {
   );
 }
 
+function HeroVideo({ label }: { label: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !reduced.matches) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video ref={videoRef} className="hero-video" muted loop playsInline preload="auto" poster={asset("/assets/video/avatar-poster.jpg")} aria-label={label}>
+      <source src={asset("/assets/video/avatar.webm")} type="video/webm" />
+      <source src={asset("/assets/video/avatar.mp4")} type="video/mp4" />
+    </video>
+  );
+}
+
 const BOOT_MIN = 350;
 const BOOT_MAX = 2500;
 const BOOT_EXIT = 400;
@@ -595,7 +621,7 @@ export default function Home() {
           <main id="panel-home" className="home" role="tabpanel" aria-labelledby="tab-home">
             <section className="hero">
               <div className="hero-media">
-                <Image src={asset("/assets/img/profile.jpg")} alt={localize(copy.name, language)} width={1280} height={1280} priority />
+                <HeroVideo label={localize(copy.name, language)} />
                 <div className="hero-gradient" aria-hidden="true" />
               </div>
               <div className="intro">
