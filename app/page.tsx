@@ -79,6 +79,7 @@ const copy = {
 
 type Job = {
   company: string;
+  logo: string;
   role: string;
   start: [number, number];
   end?: [number, number];
@@ -88,12 +89,14 @@ type Job = {
 const jobs: Job[] = [
   {
     company: "Glam AI",
+    logo: "glam-ai",
     role: "QA Specialist",
     start: [2025, 7],
     bullets: [],
   },
   {
     company: "Playrix",
+    logo: "playrix",
     role: "QA Specialist",
     start: [2023, 10],
     end: [2025, 5],
@@ -110,6 +113,7 @@ const jobs: Job[] = [
   },
   {
     company: "Playgendary",
+    logo: "playgendary",
     role: "QA Specialist",
     start: [2023, 4],
     end: [2023, 8],
@@ -125,6 +129,7 @@ const jobs: Job[] = [
   },
   {
     company: "DominiGames",
+    logo: "dominigames",
     role: "QA Engineer",
     start: [2022, 3],
     end: [2023, 4],
@@ -241,9 +246,8 @@ function LanguageSwitcher({ language, onChange, variant }: { language: Language;
 function ExperienceRow({ job, language }: { job: Job; language: Language }) {
   return (
     <article className="row">
-      <span className="logo" data-current={!job.end || undefined} aria-hidden="true">
-        {job.company[0]}
-      </span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="logo" src={asset(`/assets/img/logos/${job.logo}.png`)} alt="" aria-hidden="true" width={32} height={32} />
       <p className="row-company">{job.company}</p>
       <p className="row-role">{job.role}</p>
       <p className="row-period">
