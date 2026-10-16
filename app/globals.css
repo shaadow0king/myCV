@@ -348,7 +348,7 @@ button {
   overflow: hidden;
 }
 
-.hero-video {
+.hero-photo {
   position: absolute;
   top: 0;
   left: 0;
@@ -1168,7 +1168,7 @@ button {
     padding-top: 24px;
   }
 
-  .hero-video {
+  .hero-photo {
     top: 0;
     height: 100%;
   }
