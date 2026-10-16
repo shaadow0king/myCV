@@ -92,7 +92,28 @@ const jobs: Job[] = [
     logo: "glam-ai",
     role: "QA Specialist",
     start: [2025, 7],
-    bullets: [],
+    bullets: [
+      {
+        ru: "Ручное тестирование AI-приложения для обработки фото и видео на iOS и Android",
+        en: "Manual testing of an AI photo and video editing app on iOS and Android",
+      },
+      {
+        ru: "Проверка качества AI-генераций: фильтры, эффекты, обработка лиц",
+        en: "Checking the quality of AI generations: filters, effects, face processing",
+      },
+      {
+        ru: "Тестирование подписок и встроенных покупок, A/B-тестов и аналитических событий",
+        en: "Testing subscriptions and in-app purchases, A/B tests and analytics events",
+      },
+      {
+        ru: "Релизный регресс, смоук-тесты сборок и баг-репорты",
+        en: "Release regression, build smoke tests and bug reports",
+      },
+      {
+        ru: "Анализ трафика и API-запросов через Charles Proxy и Postman",
+        en: "Traffic and API request analysis with Charles Proxy and Postman",
+      },
+    ],
   },
   {
     company: "Playrix",
