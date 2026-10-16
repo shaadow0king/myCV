@@ -715,7 +715,7 @@ export default function Home() {
             <div className="group about">
               <div {...reveal(0, "about-glow")}>
                 <div className="about-photo">
-                  <Image src={asset("/assets/img/profile.jpg")} alt={localize(copy.name, language)} width={444} height={444} />
+                  <Image src={asset("/assets/img/profile.jpg")} alt={localize(copy.name, language)} width={592} height={840} />
                 </div>
               </div>
               <div {...reveal(1, "connect")}>
