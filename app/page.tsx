@@ -205,7 +205,7 @@ const skills: { number: string; title: Copy; description: Copy; tools: string[] 
 ];
 
 const contacts = [
-  { label: "Telegram", href: "https://t.me/dduck0" },
+  { label: "Telegram", href: "https://t.me/shadow0king" },
   { label: "Email", href: "mailto:Im.gework@gmail.com" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/gevork-akopyan-066948247/" },
 ];
@@ -515,7 +515,7 @@ function ContactDock({ language, onLanguage, onAbout, onContact }: { language: L
     <div className="dock-wrap">
       <div className="dock">
         {onAbout ? (
-          <a className="cta" href="https://t.me/dduck0" target="_blank" rel="noreferrer" aria-label={localize(copy.ctaMessage, language)} style={{ width }}>
+          <a className="cta" href="https://t.me/shadow0king" target="_blank" rel="noreferrer" aria-label={localize(copy.ctaMessage, language)} style={{ width }}>
             {labels}
           </a>
         ) : (
@@ -713,9 +713,10 @@ export default function Home() {
         {tab === "about" && (
           <main id="panel-about" className="panel" role="tabpanel" aria-labelledby="tab-about">
             <div className="group about">
-              <div {...reveal(0, "about-glow")}>
-                <div className="about-photo">
-                  <Image src={asset("/assets/img/profile.jpg")} alt={localize(copy.name, language)} width={592} height={840} />
+              <div {...reveal(0, "about-hero")}>
+                <div className="hero-media">
+                  <Image className="hero-photo" src={asset("/assets/img/hero.jpg")} alt={localize(copy.name, language)} width={1600} height={1093} />
+                  <div className="hero-gradient" aria-hidden="true" />
                 </div>
               </div>
               <div {...reveal(1, "connect")}>
