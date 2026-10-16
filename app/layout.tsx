@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_RU",
     alternateLocale: ["en_US"],
-    images: [{ url: "./og.png", width: 1536, height: 1024, alt: "Gevork Akopyan — QA Engineer" }],
+    images: [{ url: "./og.png", width: 1200, height: 630, alt: "Gevork Akopyan — QA Engineer" }],
   },
   twitter: {
     card: "summary_large_image",
