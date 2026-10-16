@@ -5,3 +5,4 @@ out
 *.log
 artifacts
 public/assets/icons
+*.tsbuildinfo
