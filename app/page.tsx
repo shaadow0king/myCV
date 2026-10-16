@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ArrowDown, Bug, MousePointerClick } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
 
 type Language = "ru" | "en";
 type Copy = { ru: string; en: string };
@@ -38,11 +38,6 @@ const copy = {
     },
     aria: { ru: "Скачать резюме в PDF", en: "Download resume as PDF" },
   },
-  heatmap: {
-    aria: { ru: "Карьера в QA по неделям", en: "QA career by week" },
-        today: { ru: "Сегодня", en: "Today" },
-    gap: { ru: "Перерыв", en: "Break" },
-  },
   experience: {
     label: { ru: "Опыт работы", en: "Work experience" },
     present: { ru: "наст. время", en: "present" },
@@ -76,7 +71,8 @@ const copy = {
     cvEn: { ru: "Резюме EN", en: "CV EN" },
   },
   cta: { ru: "Контакты", en: "Contact" },
-  ctaBack: { ru: "На главную", en: "Home" },
+  ctaMessage: { ru: "Написать мне", en: "Message me" },
+  boot: { ru: "Сайт загружен на", en: "Site loaded" },
   langGroup: { ru: "Выбор языка", en: "Language selector" },
   tabsGroup: { ru: "Разделы портфолио", en: "Portfolio sections" },
 };
@@ -86,7 +82,6 @@ type Job = {
   role: string;
   start: [number, number];
   end?: [number, number];
-  level: 1 | 2 | 3 | 4;
   bullets: Copy[];
 };
 
@@ -95,7 +90,6 @@ const jobs: Job[] = [
     company: "Glam AI",
     role: "QA Specialist",
     start: [2025, 7],
-    level: 4,
     bullets: [],
   },
   {
@@ -103,7 +97,6 @@ const jobs: Job[] = [
     role: "QA Specialist",
     start: [2023, 10],
     end: [2025, 5],
-    level: 3,
     bullets: [
       { ru: "Ручное тестирование на iOS, Android, Amazon, Huawei и Windows", en: "Manual testing on iOS, Android, Amazon, Huawei and Windows" },
       { ru: "Анализ требований и декомпозиция для проверки соответствия ТЗ", en: "Requirements analysis and decomposition to verify specification compliance" },
@@ -120,7 +113,6 @@ const jobs: Job[] = [
     role: "QA Specialist",
     start: [2023, 4],
     end: [2023, 8],
-    level: 2,
     bullets: [
       { ru: "Ручное тестирование на Android и iOS", en: "Manual testing on Android and iOS" },
       { ru: "Тестирование аналитики: сырые данные Adjust и конфигурации Firebase", en: "Analytics testing with Adjust raw data and Firebase configurations" },
@@ -136,7 +128,6 @@ const jobs: Job[] = [
     role: "QA Engineer",
     start: [2022, 3],
     end: [2023, 4],
-    level: 1,
     bullets: [
       { ru: "Ручное функциональное и нефункциональное тестирование на Android и iOS", en: "Manual functional and non-functional testing on Android and iOS" },
       { ru: "Внутреннее тестирование фич и альфа/бета-тестирование проектов", en: "Internal feature testing and alpha/beta project testing" },
@@ -226,42 +217,6 @@ const formatPeriod = (job: Job, language: Language) => {
   return [range, formatDuration(monthsBetween(job.start, job.end ?? nowMonth()), language)];
 };
 
-const jobForDate = (date: Date) => {
-  const key = date.getFullYear() * 12 + date.getMonth();
-  return jobs.find((job) => {
-    const start = job.start[0] * 12 + job.start[1] - 1;
-    const end = job.end ? job.end[0] * 12 + job.end[1] - 1 : Infinity;
-    return key >= start && key <= end;
-  });
-};
-
-type Cell = { date: Date; job?: Job; today?: boolean; future?: boolean };
-
-const buildWeeks = (today: Date) => {
-  const first = new Date(2022, 2, 1);
-  const start = new Date(first);
-  start.setDate(first.getDate() - ((first.getDay() + 6) % 7));
-  const weeks: { month: Date | null; cells: Cell[] }[] = [];
-  const cursor = new Date(start);
-  let lastMonth = -1;
-  while (cursor <= today) {
-    const cells: Cell[] = [];
-    let month: Date | null = null;
-    for (let day = 0; day < 7; day += 1) {
-      const date = new Date(cursor);
-      if (date.getMonth() !== lastMonth && date.getDate() <= 7 && date >= first) {
-        month = date;
-        lastMonth = date.getMonth();
-      }
-      const isToday = date.toDateString() === today.toDateString();
-      cells.push({ date, job: date >= first && date <= today ? jobForDate(date) : undefined, today: isToday, future: date > today });
-      cursor.setDate(cursor.getDate() + 1);
-    }
-    weeks.push({ month, cells });
-  }
-  return weeks;
-};
-
 function LanguageSwitcher({ language, onChange, variant }: { language: Language; onChange: (language: Language) => void; variant: "header" | "dock" }) {
   return (
     <div className="switcher" data-variant={variant} role="group" aria-label={localize(copy.langGroup, language)}>
@@ -280,92 +235,6 @@ function LanguageSwitcher({ language, onChange, variant }: { language: Language;
         </button>
       ))}
     </div>
-  );
-}
-
-function CareerHeatmap({ language }: { language: Language }) {
-  const [today, setToday] = useState<Date | null>(null);
-  const [tooltip, setTooltip] = useState<{ x: number; y: number; text: string } | null>(null);
-  const [fades, setFades] = useState({ left: false, right: false });
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => setToday(new Date()));
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
-
-  const weeks = useMemo(() => (today ? buildWeeks(today) : []), [today]);
-
-  const updateFades = useCallback(() => {
-    const node = scrollRef.current;
-    if (!node) return;
-    setFades({ left: node.scrollLeft > 4, right: node.scrollLeft + node.clientWidth < node.scrollWidth - 4 });
-  }, []);
-
-  useEffect(() => {
-    const node = scrollRef.current;
-    if (!node || !weeks.length) return;
-    node.scrollLeft = node.scrollWidth;
-    updateFades();
-    window.addEventListener("resize", updateFades);
-    return () => window.removeEventListener("resize", updateFades);
-  }, [weeks, updateFades]);
-
-  const locale = language === "ru" ? "ru-RU" : "en-US";
-  const monthFormat = new Intl.DateTimeFormat(locale, { month: "short" });
-  const dayFormat = new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" });
-
-  const showTooltip = (event: MouseEvent<HTMLSpanElement>, cell: Cell) => {
-    const frame = frameRef.current;
-    if (!frame) return;
-    const box = event.currentTarget.getBoundingClientRect();
-    const host = frame.getBoundingClientRect();
-    const label = cell.today ? localize(copy.heatmap.today, language) : cell.job ? cell.job.company : localize(copy.heatmap.gap, language);
-    const x = Math.min(Math.max(box.left - host.left + box.width / 2, 70), host.width - 70);
-    setTooltip({ x, y: box.top - host.top, text: `${dayFormat.format(cell.date)} · ${label}` });
-  };
-
-  return (
-    <section className="heatmap" aria-label={localize(copy.heatmap.aria, language)}>
-      <div className="heatmap-frame" ref={frameRef}>
-        <div className="heatmap-fade" data-side="left" data-show={fades.left || undefined} aria-hidden="true" />
-        <div className="heatmap-fade" data-side="right" data-show={fades.right || undefined} aria-hidden="true" />
-        <div className="heatmap-scroll" ref={scrollRef} onScroll={updateFades} onMouseLeave={() => setTooltip(null)}>
-          <div className="heatmap-cols" style={{ minHeight: 100 }}>
-            {weeks.map((week) => (
-              <div className="heatmap-col" key={week.cells[0].date.toISOString()}>
-                <span className="heatmap-month">{week.month ? monthFormat.format(week.month).replace(".", "") : ""}</span>
-                {week.cells.map((cell) => (
-                  <span
-                    key={cell.date.toISOString()}
-                    className="cell"
-                    data-level={cell.job ? cell.job.level : 0}
-                    data-today={cell.today || undefined}
-                    data-future={cell.future || undefined}
-                    data-weekend={cell.date.getDay() % 6 === 0 || undefined}
-                    onMouseEnter={cell.future ? undefined : (event) => showTooltip(event, cell)}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-        {tooltip && (
-          <div className="tooltip" style={{ left: tooltip.x, top: tooltip.y }}>
-            {tooltip.text}
-          </div>
-        )}
-      </div>
-      <div className="heatmap-legend">
-        {[...jobs].reverse().map((job) => (
-          <span key={job.company}>
-            <span className="cell" data-level={job.level} />
-            {job.company}
-          </span>
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -421,11 +290,228 @@ function JobProjects({ job, language }: { job: Job; language: Language }) {
   );
 }
 
+const BOOT_MIN = 350;
+const BOOT_MAX = 2500;
+const BOOT_EXIT = 400;
+
+function SiteBoot({ language }: { language: Language }) {
+  const [fontsReady, setFontsReady] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [minElapsed, setMinElapsed] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [shown, setShown] = useState(0);
+  const shownRef = useRef(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    document.documentElement.classList.add("is-loading");
+    (document.fonts?.ready ?? Promise.resolve()).then(() => {
+      if (!signal.aborted) setFontsReady(true);
+    });
+    const frame = window.requestAnimationFrame(() => {
+      const images = Array.from(document.querySelectorAll<HTMLImageElement>(".page img")).filter((image) => {
+        const box = image.getBoundingClientRect();
+        return box.width > 0 && box.height > 0 && box.top < window.innerHeight;
+      });
+      if (!images.length) {
+        setImagesLoaded(1);
+        return;
+      }
+      let done = 0;
+      images.forEach((image) => {
+        const finish = () => {
+          if (!signal.aborted) setImagesLoaded(++done / images.length);
+        };
+        if (image.complete) finish();
+        else {
+          image.addEventListener("load", finish, { once: true });
+          image.addEventListener("error", finish, { once: true });
+        }
+      });
+    });
+    const minTimer = window.setTimeout(() => setMinElapsed(true), BOOT_MIN);
+    const maxTimer = window.setTimeout(() => {
+      setTimedOut(true);
+      controller.abort();
+    }, BOOT_MAX);
+    return () => {
+      controller.abort();
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(minTimer);
+      window.clearTimeout(maxTimer);
+      document.documentElement.classList.remove("is-loading");
+    };
+  }, []);
+
+  const exiting = minElapsed && (timedOut || (fontsReady && imagesLoaded === 1));
+  const progress = exiting ? 100 : Math.min(94, 10 + (fontsReady ? 30 : 0) + Math.round(54 * imagesLoaded));
+
+  useEffect(() => {
+    const from = shownRef.current;
+    const started = performance.now();
+    let frame = 0;
+    const tick = (now: number) => {
+      const t = Math.min((now - started) / 240, 1);
+      const value = from + (progress - from) * (1 - (1 - t) ** 3);
+      shownRef.current = value;
+      setShown(value);
+      if (t < 1) frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+  }, [progress]);
+
+  useEffect(() => {
+    if (!exiting) return;
+    const timer = window.setTimeout(() => {
+      setVisible(false);
+      document.documentElement.classList.remove("is-loading");
+    }, BOOT_EXIT);
+    return () => window.clearTimeout(timer);
+  }, [exiting]);
+
+  if (!visible) return null;
+  const value = Math.round(shown);
+  return (
+    <div className="boot" data-exiting={exiting || undefined} role="status" aria-live="polite" aria-label={`${localize(copy.boot, language)} ${value}%`}>
+      <span className="boot-number" aria-hidden="true">{String(value).padStart(2, "0")}</span>
+    </div>
+  );
+}
+
+const THUMB_MIN = 36;
+const THUMB_MAX = 72;
+const THUMB_INSET = 10;
+
+function ScrollThumb() {
+  const [thumb, setThumb] = useState({ height: 0, top: 0, visible: false });
+  const [dragging, setDragging] = useState(false);
+  const dragStart = useRef({ y: 0, scroll: 0 });
+  const frame = useRef<number | null>(null);
+
+  const measure = useCallback(() => {
+    const total = document.documentElement.scrollHeight;
+    const view = window.innerHeight;
+    const scrollable = total - view;
+    if (scrollable <= 1) {
+      setThumb((current) => (current.visible ? { ...current, visible: false } : current));
+      return;
+    }
+    const track = view - THUMB_INSET * 2;
+    const height = Math.min(THUMB_MAX, Math.max(THUMB_MIN, (view / total) * track));
+    setThumb({ height, top: THUMB_INSET + (window.scrollY / scrollable) * (track - height), visible: true });
+  }, []);
+
+  useEffect(() => {
+    const schedule = () => {
+      frame.current ??= window.requestAnimationFrame(() => {
+        frame.current = null;
+        measure();
+      });
+    };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    const observer = new ResizeObserver(schedule);
+    observer.observe(document.body);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      observer.disconnect();
+    };
+  }, [measure]);
+
+  const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    setDragging(true);
+    dragStart.current = { y: event.clientY, scroll: window.scrollY };
+    event.currentTarget.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  };
+
+  const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!dragging) return;
+    const total = document.documentElement.scrollHeight;
+    const view = window.innerHeight;
+    const track = view - THUMB_INSET * 2 - thumb.height;
+    if (track <= 0) return;
+    const ratio = (total - view) / track;
+    window.scrollTo({ top: dragStart.current.scroll + (event.clientY - dragStart.current.y) * ratio, behavior: "instant" });
+  };
+
+  const onPointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    setDragging(false);
+    event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+
+  if (!thumb.visible) return null;
+  return (
+    <div
+      className="scroll-thumb"
+      role="presentation"
+      aria-hidden="true"
+      data-dragging={dragging || undefined}
+      style={{ height: thumb.height, transform: `translateY(${thumb.top}px)` }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+    />
+  );
+}
+
+function ContactDock({ language, onLanguage, onAbout, onContact }: { language: Language; onLanguage: (language: Language) => void; onAbout: boolean; onContact: () => void }) {
+  const messageRef = useRef<HTMLSpanElement>(null);
+  const contactRef = useRef<HTMLSpanElement>(null);
+  const [width, setWidth] = useState<number>();
+
+  useLayoutEffect(() => {
+    const update = () => {
+      const label = onAbout ? messageRef.current : contactRef.current;
+      if (label) setWidth(label.offsetWidth + 44);
+    };
+    update();
+    document.fonts?.ready.then(update).catch(() => {});
+  }, [language, onAbout]);
+
+  const labels = (
+    <>
+      <span ref={messageRef} className="cta-label" data-show={onAbout} aria-hidden={!onAbout}>
+        {localize(copy.ctaMessage, language)}
+      </span>
+      <span ref={contactRef} className="cta-label" data-show={!onAbout} aria-hidden={onAbout}>
+        {localize(copy.cta, language)}
+      </span>
+    </>
+  );
+
+  return (
+    <div className="dock-wrap">
+      <div className="dock">
+        {onAbout ? (
+          <a className="cta" href="https://t.me/dduck0" target="_blank" rel="noreferrer" aria-label={localize(copy.ctaMessage, language)} style={{ width }}>
+            {labels}
+          </a>
+        ) : (
+          <button className="cta" type="button" aria-label={localize(copy.cta, language)} aria-controls="panel-about" onClick={onContact} style={{ width }}>
+            {labels}
+          </button>
+        )}
+        <div className="dock-language">
+          <LanguageSwitcher language={language} onChange={onLanguage} variant="dock" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const reveal = (index: number, className = "") => ({ className: `reveal ${className}`.trim(), style: { "--reveal-index": index } as CSSProperties });
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("ru");
   const [tab, setTab] = useState<TabId>("home");
+  const [direction, setDirection] = useState<"forward" | "backward">("forward");
   const tabRefs = useRef<Record<TabId, HTMLButtonElement | null>>({ home: null, experience: null, skills: null, about: null });
 
   useEffect(() => {
@@ -451,6 +537,8 @@ export default function Home() {
   }, [language]);
 
   const selectTab = (next: TabId) => {
+    if (next === tab) return;
+    setDirection(tabIds.indexOf(next) > tabIds.indexOf(tab) ? "forward" : "backward");
     setTab(next);
     window.history.replaceState(null, "", next === "home" ? window.location.pathname : `#${next}`);
     window.scrollTo({ top: 0 });
@@ -474,7 +562,7 @@ export default function Home() {
         <div className="header-language">
           <LanguageSwitcher language={language} onChange={setLanguage} variant="header" />
         </div>
-        <nav className="nav" role="tablist" aria-label={localize(copy.tabsGroup, language)}>
+        <nav className="nav" data-direction={direction} role="tablist" aria-label={localize(copy.tabsGroup, language)}>
           {tabIds.map((id) => (
             <button
               key={id}
@@ -537,7 +625,6 @@ export default function Home() {
                 </span>
                 <span className="cv-card-open" aria-hidden="true"><ArrowDown size={18} strokeWidth={2} /></span>
               </a>
-              <CareerHeatmap language={language} />
             </div>
 
             <section className="experience">
@@ -629,16 +716,9 @@ export default function Home() {
         )}
       </div>
 
-      <div className="dock-wrap">
-        <div className="dock">
-          <button className="cta" type="button" aria-controls={tab === "about" ? "panel-home" : "panel-about"} onClick={() => selectTab(tab === "about" ? "home" : "about")}>
-            {localize(tab === "about" ? copy.ctaBack : copy.cta, language)}
-          </button>
-          <div className="dock-language">
-            <LanguageSwitcher language={language} onChange={setLanguage} variant="dock" />
-          </div>
-        </div>
-      </div>
+      <ContactDock language={language} onLanguage={setLanguage} onAbout={tab === "about"} onContact={() => selectTab("about")} />
+      <ScrollThumb />
+      <SiteBoot language={language} />
     </>
   );
 }

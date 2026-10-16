@@ -42,6 +42,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+        <noscript>
+          <style>{".boot{display:none}"}</style>
+        </noscript>
       </head>
       <body>{children}</body>
     </html>

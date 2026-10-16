@@ -43,7 +43,17 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
   background: var(--bg);
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
 }
 
 body {
@@ -162,6 +172,27 @@ button {
 .tab[data-active]::after {
   opacity: 1;
   transform: scaleX(1);
+}
+
+/* Old underline leaves in the travel direction, new one grows from the opposite side */
+.nav[data-direction="forward"] .tab::after {
+  transform-origin: 100%;
+}
+
+.nav[data-direction="forward"] .tab[data-active]::after {
+  transform-origin: 0;
+}
+
+.nav[data-direction="backward"] .tab::after {
+  transform-origin: 0;
+}
+
+.nav[data-direction="backward"] .tab[data-active]::after {
+  transform-origin: 100%;
+}
+
+.nav[data-direction] .tab:not([data-active])::after {
+  transform: scaleX(0);
 }
 
 /* Language switcher */
@@ -525,167 +556,6 @@ button {
 
 .cv-card:hover .cv-card-open svg {
   transform: translate(1px, 1px);
-}
-
-/* Career heatmap */
-
-.heatmap {
-  --cell: 10px;
-  --gap: 2px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  width: 100%;
-  max-width: 634px;
-}
-
-.heatmap-frame {
-  position: relative;
-  width: 100%;
-}
-
-.heatmap-scroll {
-  width: 100%;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.heatmap-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.heatmap-fade {
-  position: absolute;
-  top: 0;
-  z-index: 5;
-  width: 46px;
-  height: 100%;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.28s var(--ease);
-  backdrop-filter: blur(2.5px);
-}
-
-.heatmap-fade[data-side="left"] {
-  left: 0;
-  background: linear-gradient(to right, var(--bg) 12%, transparent);
-  mask-image: linear-gradient(90deg, #000 35%, #0000);
-}
-
-.heatmap-fade[data-side="right"] {
-  right: 0;
-  background: linear-gradient(to left, var(--bg) 12%, transparent);
-  mask-image: linear-gradient(270deg, #000 35%, #0000);
-}
-
-.heatmap-fade[data-show] {
-  opacity: 1;
-}
-
-.heatmap-cols {
-  display: flex;
-  gap: var(--gap);
-  width: max-content;
-}
-
-.heatmap-col {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
-}
-
-.heatmap-month {
-  width: var(--cell);
-  height: 16px;
-  color: var(--text-faint);
-  font-size: 9px;
-  line-height: 16px;
-  white-space: nowrap;
-}
-
-.cell {
-  width: var(--cell);
-  height: var(--cell);
-  border-radius: 2px;
-  background: var(--fill);
-  outline: 1px solid var(--hairline);
-  outline-offset: -1px;
-}
-
-.heatmap-cols .cell:hover {
-  outline-color: var(--text-mid);
-}
-
-.cell[data-level="0"] {
-  outline: none;
-}
-
-.cell[data-level="1"] {
-  background: color-mix(in srgb, var(--dot) 30%, transparent);
-}
-
-.cell[data-level="2"] {
-  background: color-mix(in srgb, var(--dot) 55%, transparent);
-}
-
-.cell[data-level="3"] {
-  background: color-mix(in srgb, var(--dot) 78%, transparent);
-}
-
-.cell[data-level="4"] {
-  background: var(--dot);
-}
-
-.heatmap-cols .cell[data-weekend]:not([data-level="0"]) {
-  opacity: 0.45;
-}
-
-.cell[data-today] {
-  background: #fff;
-  outline: none;
-}
-
-.cell[data-future] {
-  background: none;
-  outline: none;
-}
-
-.heatmap-legend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 14px;
-  color: var(--text-faint);
-  font-size: 11px;
-  line-height: 1.4;
-  letter-spacing: var(--tracking-body);
-}
-
-.heatmap-legend span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.tooltip {
-  position: absolute;
-  z-index: 10;
-  padding: 5px 9px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  box-shadow: var(--shadow-dock);
-  backdrop-filter: blur(10px);
-  color: var(--text-strong);
-  font-size: 12px;
-  line-height: 1.2;
-  letter-spacing: var(--tracking-body);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-  pointer-events: none;
-  transform: translate(-50%, calc(-100% - 8px));
 }
 
 /* Experience summary */
@@ -1073,11 +943,13 @@ button {
 
 .cta {
   position: relative;
+  z-index: 1;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  min-width: 44px;
   height: 44px;
-  padding: 0 20px;
+  padding: 0;
   overflow: hidden;
   border-radius: 999px;
   background: var(--text);
@@ -1089,7 +961,23 @@ button {
   white-space: nowrap;
   user-select: none;
   pointer-events: auto;
-  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  transition: width 0.4s var(--ease), opacity 0.2s var(--ease);
+}
+
+.cta-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.88);
+  transition: opacity 0.26s var(--ease), transform 0.4s var(--ease);
+}
+
+.cta-label[data-show="true"] {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .cta:active {
@@ -1104,6 +992,112 @@ button {
 @media (hover: hover) and (pointer: fine) {
   .cta:hover {
     opacity: 0.9;
+  }
+}
+
+/* Boot screen */
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  cursor: wait;
+  clip-path: inset(0);
+  transition: clip-path 0.4s var(--ease), filter 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.boot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(62vw, 720px);
+  aspect-ratio: 1.6;
+  pointer-events: none;
+  background: radial-gradient(#ffffff26 0%, #ffffff12 28%, #ffffff05 50%, #0000 72%);
+  filter: blur(26px);
+  transform: translate(-50%, -50%) scale(0.92);
+  animation: bootGlow 2.4s ease-in-out infinite alternate;
+}
+
+.boot-number {
+  position: relative;
+  display: block;
+  font-size: clamp(120px, 21vw, 320px);
+  font-weight: 300;
+  line-height: 0.72;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  text-shadow: 0 0 18px #ffffff2e, 0 0 64px #ffffff14;
+  transform: translate(0.02em);
+  animation: bootNumberIn 0.52s var(--ease) both;
+}
+
+.boot[data-exiting] {
+  pointer-events: none;
+  filter: blur(8px);
+  clip-path: inset(0 0 100%);
+  transform: scale(1.025);
+}
+
+@keyframes bootNumberIn {
+  from {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translate(0.02em) translateY(0.12em) scaleY(0.9);
+  }
+}
+
+@keyframes bootGlow {
+  to {
+    opacity: 0.72;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* Scroll thumb */
+
+.scroll-thumb {
+  position: fixed;
+  top: 0;
+  right: 6px;
+  z-index: 120;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--text-faint);
+  cursor: grab;
+  touch-action: none;
+  will-change: transform;
+  transition: background 0.2s var(--ease), width 0.15s var(--ease);
+}
+
+.scroll-thumb:hover {
+  width: 8px;
+  background: var(--text-dim);
+}
+
+.scroll-thumb[data-dragging] {
+  width: 8px;
+  background: var(--text-mid);
+  cursor: grabbing;
+}
+
+@media (width <= 720px), (hover: none) and (pointer: coarse) {
+  .scroll-thumb {
+    display: none;
+  }
+}
+
+@media (width <= 720px) {
+  .boot-number {
+    font-size: clamp(112px, 34vw, 160px);
   }
 }
 
