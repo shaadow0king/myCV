@@ -694,6 +694,13 @@ button {
   gap: 20px;
 }
 
+.job-summary {
+  margin: 0 0 12px;
+  color: var(--text-mid);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 .job-projects {
   --rail-y: 0px;
   position: relative;

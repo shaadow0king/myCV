@@ -83,6 +83,7 @@ type Job = {
   role: string;
   start: [number, number];
   end?: [number, number];
+  summary?: Copy;
   bullets: Copy[];
 };
 
@@ -92,26 +93,42 @@ const jobs: Job[] = [
     logo: "glam-ai",
     role: "QA Specialist",
     start: [2025, 7],
+    summary: {
+      ru: "Работал в кросс-функциональной команде быстрорастущего AI-приложения: более 1 млн активных пользователей в месяц, топ-10 App Store и еженедельные релизы. В работе QA уделял внимание качеству продукта, вовлечённости и удержанию пользователей.",
+      en: "Worked in a cross-functional team on a fast-growing AI app with over 1M monthly active users, a top-10 App Store ranking and weekly releases. As QA, I focused on product quality, user engagement and retention.",
+    },
     bullets: [
       {
-        ru: "Ручное тестирование AI-приложения для обработки фото и видео на iOS и Android",
-        en: "Manual testing of an AI photo and video editing app on iOS and Android",
+        ru: "Проверял iOS-приложение, REST API и взаимодействие клиента с backend-сервисами",
+        en: "Tested the iOS app, REST APIs and client interaction with backend services",
       },
       {
-        ru: "Проверка качества AI-генераций: фильтры, эффекты, обработка лиц",
-        en: "Checking the quality of AI generations: filters, effects, face processing",
+        ru: "Тестировал AI/ML-функции обработки изображений и видео",
+        en: "Tested AI/ML image and video processing features",
       },
       {
-        ru: "Тестирование подписок и встроенных покупок, A/B-тестов и аналитических событий",
-        en: "Testing subscriptions and in-app purchases, A/B tests and analytics events",
+        ru: "Готовил и проводил функциональные, регрессионные, интеграционные, smoke- и исследовательские проверки для еженедельных релизов",
+        en: "Prepared and ran functional, regression, integration, smoke and exploratory testing for weekly releases",
       },
       {
-        ru: "Релизный регресс, смоук-тесты сборок и баг-репорты",
-        en: "Release regression, build smoke tests and bug reports",
+        ru: "Разбирал проблемы на продакшене вместе с iOS-, backend-, ML- и computer vision-разработчиками, поддержкой и продуктовой командой: воспроизводил дефекты и помогал находить их причины",
+        en: "Investigated production issues with iOS, backend, ML and computer vision engineers, support and the product team: reproduced defects and helped find their root causes",
       },
       {
-        ru: "Анализ трафика и API-запросов через Charles Proxy и Postman",
-        en: "Traffic and API request analysis with Charles Proxy and Postman",
+        ru: "Проверял API и backend через Postman, Charles и Proxyman",
+        en: "Tested APIs and backend with Postman, Charles and Proxyman",
+      },
+      {
+        ru: "Проверял монетизацию и весь цикл подписки: paywall, покупки, пробный период, отмену, продление и истечение срока",
+        en: "Tested monetization and the full subscription lifecycle: paywall, purchases, free trial, cancellation, renewal and expiration",
+      },
+      {
+        ru: "Работал с Xcode, TestFlight, Firebase, Bugsnag, GitHub, Adapty и Amplitude; участвовал в релизном процессе на базе CI/CD",
+        en: "Worked with Xcode, TestFlight, Firebase, Bugsnag, GitHub, Adapty and Amplitude; took part in a CI/CD-based release process",
+      },
+      {
+        ru: "В составе продуктовой команды помог повысить retention в Daily Shots на 30% за счёт улучшения ценности функции и пользовательского опыта",
+        en: "As part of the product team, helped increase Daily Shots retention by 30% by improving the feature's value and user experience",
       },
     ],
   },
@@ -300,18 +317,21 @@ function JobProjects({ job, language }: { job: Job; language: Language }) {
   }
 
   return (
-    <ul
-      className="job-projects"
-      data-rail-active={railY !== null || undefined}
-      style={{ "--rail-y": `${railY ?? 0}px` } as CSSProperties}
-      onMouseLeave={() => setRailY(null)}
-    >
-      {job.bullets.map((bullet) => (
-        <li className="job-item" key={bullet.en} onMouseEnter={moveRail}>
-          {localize(bullet, language)}
-        </li>
-      ))}
-    </ul>
+    <>
+      {job.summary && <p className="job-summary">{localize(job.summary, language)}</p>}
+      <ul
+        className="job-projects"
+        data-rail-active={railY !== null || undefined}
+        style={{ "--rail-y": `${railY ?? 0}px` } as CSSProperties}
+        onMouseLeave={() => setRailY(null)}
+      >
+        {job.bullets.map((bullet) => (
+          <li className="job-item" key={bullet.en} onMouseEnter={moveRail}>
+            {localize(bullet, language)}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
