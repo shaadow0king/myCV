@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://shaadow0king.github.io/myCV/"),
   title: "Gevork Akopyan — QA Engineer",
   description:
-    "Bilingual QA Engineer portfolio with professional experience, technical skills, tools and contact information.",
+    "QA Engineer CV: professional experience, technical skills, tools and contact information.",
   icons: {
     icon: `${basePath}/assets/img/favicon.ico`,
   },

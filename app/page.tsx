@@ -74,7 +74,7 @@ const copy = {
   ctaMessage: { ru: "Написать мне", en: "Message me" },
   boot: { ru: "Сайт загружен на", en: "Site loaded" },
   langGroup: { ru: "Выбор языка", en: "Language selector" },
-  tabsGroup: { ru: "Разделы портфолио", en: "Portfolio sections" },
+  tabsGroup: { ru: "Разделы резюме", en: "CV sections" },
 };
 
 type Job = {
