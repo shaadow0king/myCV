@@ -93,42 +93,38 @@ const jobs: Job[] = [
     logo: "glam-ai",
     role: "QA Specialist",
     start: [2025, 7],
-    summary: {
-      ru: "Работал в кросс-функциональной команде быстрорастущего AI-приложения: более 1 млн активных пользователей в месяц, топ-10 App Store и еженедельные релизы. В работе QA уделял внимание качеству продукта, вовлечённости и удержанию пользователей.",
-      en: "Worked in a cross-functional team on a fast-growing AI app with over 1M monthly active users, a top-10 App Store ranking and weekly releases. As QA, I focused on product quality, user engagement and retention.",
-    },
     bullets: [
       {
-        ru: "Проверял iOS-приложение, REST API и взаимодействие клиента с backend-сервисами",
-        en: "Tested the iOS app, REST APIs and client interaction with backend services",
+        ru: "Ручное тестирование iOS-приложения, API и интеграций с бэкендом; проверка AI/ML-функций обработки фото и видео",
+        en: "Manually tested the iOS app, APIs and backend integrations, including AI/ML image and video processing features",
       },
       {
-        ru: "Тестировал AI/ML-функции обработки изображений и видео",
-        en: "Tested AI/ML image and video processing features",
+        ru: "Проверка подписок и монетизации: пейволы, покупки, пробные периоды, отмена, продление и истечение подписок",
+        en: "Validated subscription and monetization flows: paywalls, purchases, trials, cancellations, renewals and subscription expiry",
       },
       {
-        ru: "Готовил и проводил функциональные, регрессионные, интеграционные, smoke- и исследовательские проверки для еженедельных релизов",
-        en: "Prepared and ran functional, regression, integration, smoke and exploratory testing for weekly releases",
+        ru: "В составе продуктовой команды участвовал в улучшении Daily Shots — retention направления вырос на 50%",
+        en: "Contributed to product-team improvements in Daily Shots, where retention increased by 50%",
       },
       {
-        ru: "Разбирал проблемы на продакшене вместе с iOS-, backend-, ML- и computer vision-разработчиками, поддержкой и продуктовой командой: воспроизводил дефекты и помогал находить их причины",
-        en: "Investigated production issues with iOS, backend, ML and computer vision engineers, support and the product team: reproduced defects and helped find their root causes",
+        ru: "Подготовка и проведение функциональных, регрессионных, интеграционных, smoke- и исследовательских проверок перед еженедельными релизами",
+        en: "Planned and performed functional, regression, integration, smoke and exploratory testing for weekly releases",
       },
       {
-        ru: "Проверял API и backend через Postman, Charles и Proxyman",
-        en: "Tested APIs and backend with Postman, Charles and Proxyman",
+        ru: "Проверка API и серверной логики с помощью Postman, Charles Proxy и Proxyman",
+        en: "Tested APIs and backend logic using Postman, Charles Proxy and Proxyman",
       },
       {
-        ru: "Проверял монетизацию и весь цикл подписки: paywall, покупки, пробный период, отмену, продление и истечение срока",
-        en: "Tested monetization and the full subscription lifecycle: paywall, purchases, free trial, cancellation, renewal and expiration",
+        ru: "Разбор и воспроизведение продакшен-дефектов совместно с iOS-, backend-, ML-командами, специалистами по компьютерному зрению, поддержкой и продуктовой командой",
+        en: "Investigated and reproduced production defects with iOS, backend, ML, computer vision, support and product teams",
       },
       {
-        ru: "Работал с Xcode, TestFlight, Firebase, Bugsnag, GitHub, Adapty и Amplitude; участвовал в релизном процессе на базе CI/CD",
-        en: "Worked with Xcode, TestFlight, Firebase, Bugsnag, GitHub, Adapty and Amplitude; took part in a CI/CD-based release process",
+        ru: "Участие в релизных процессах на базе CI/CD; работа с Xcode, TestFlight и GitHub",
+        en: "Participated in CI/CD release processes; worked with Xcode, TestFlight and GitHub",
       },
       {
-        ru: "В составе продуктовой команды помог повысить retention в Daily Shots на 30% за счёт улучшения ценности функции и пользовательского опыта",
-        en: "As part of the product team, helped increase Daily Shots retention by 30% by improving the feature's value and user experience",
+        ru: "Работа с Firebase, Bugsnag, Adapty и Amplitude при проверке стабильности, подписок и продуктовых сценариев",
+        en: "Used Firebase, Bugsnag, Adapty and Amplitude to validate stability, subscriptions and product flows",
       },
     ],
   },
