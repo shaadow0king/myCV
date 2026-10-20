@@ -16,17 +16,17 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Gevork Akopyan — QA Engineer",
-    description: "Professional experience · Skills · Tools · Contact",
+    description: "QA Engineer, 4+ years in mobile apps & games: Glam AI, Playrix, Playgendary. Belgrade.",
     type: "website",
     locale: "ru_RU",
     alternateLocale: ["en_US"],
-    images: [{ url: "./og.png", width: 1200, height: 630, alt: "Gevork Akopyan — QA Engineer" }],
+    images: [{ url: "./og-cover.png", width: 1200, height: 630, alt: "Gevork Akopyan — QA Engineer" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Gevork Akopyan — QA Engineer",
-    description: "Professional experience · Skills · Tools · Contact",
-    images: ["./og.png"],
+    description: "QA Engineer, 4+ years in mobile apps & games: Glam AI, Playrix, Playgendary. Belgrade.",
+    images: ["./og-cover.png"],
   },
 };
 
