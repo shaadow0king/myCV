@@ -1217,6 +1217,12 @@ button {
   margin: 0;
 }
 
+.products-platform {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .products-list {
   display: flex;
   flex-direction: column;

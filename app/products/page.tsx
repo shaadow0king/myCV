@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowLeft } from "lucide-react";
+import { ArrowDown, ArrowLeft, Laptop } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Language = "ru" | "en";
@@ -35,6 +35,7 @@ const copy = {
   title: { ru: "Продукты", en: "Products" },
   intro: { ru: "Небольшие программы, которые я сделал. Бесплатно.", en: "Small apps I've made. Free." },
   download: { ru: "Скачать", en: "Download" },
+  macOnly: { ru: "Только для Mac", en: "Mac only" },
   langGroup: { ru: "Выбор языка", en: "Language selector" },
 };
 
@@ -101,7 +102,10 @@ export default function Products() {
                     <span className="cv-card-copy">
                       <span className="cv-card-heading">
                         <span className="cv-card-title">{product.name}</span>
-                        <span className="cv-card-version">{t(product.platform)}</span>
+                        <span className="cv-card-version products-platform" title={t(copy.macOnly)}>
+                          <Laptop size={13} strokeWidth={2} aria-label={t(copy.macOnly)} />
+                          {t(product.platform)}
+                        </span>
                       </span>
                       <span className="cv-card-description">{t(product.description)}</span>
                     </span>
