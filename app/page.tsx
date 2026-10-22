@@ -41,8 +41,8 @@ const copy = {
   products: {
     title: { ru: "Продукты", en: "Products" },
     description: {
-      ru: "Программы и утилиты собственной разработки.",
-      en: "Apps and utilities I've developed.",
+      ru: "Программы и утилиты для повседневных задач.",
+      en: "Apps and utilities for everyday tasks.",
     },
   },
   experience: {
