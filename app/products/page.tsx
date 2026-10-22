@@ -21,7 +21,7 @@ const products: Product[] = [
   {
     name: "Mistype",
     face: "Mt",
-    platform: { ru: "macOS 15+ · Apple Silicon", en: "macOS 15+ · Apple Silicon" },
+    platform: { ru: "macOS 15+", en: "macOS 15+" },
     description: {
       ru: "Исправляет текст, набранный не в той раскладке: ghbdtn → привет. Бесплатно, без подписки.",
       en: "Fixes text typed in the wrong keyboard layout: ghbdtn → привет. Free, no subscription.",
