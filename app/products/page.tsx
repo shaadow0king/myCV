@@ -20,7 +20,7 @@ type Product = {
 const products: Product[] = [
   {
     name: "Mistype",
-    face: "ПР",
+    face: "Mt",
     platform: { ru: "macOS 15+ · Apple Silicon", en: "macOS 15+ · Apple Silicon" },
     description: {
       ru: "Исправляет текст, набранный не в той раскладке: ghbdtn → привет. Бесплатно, без подписки.",
