@@ -41,8 +41,8 @@ const copy = {
   products: {
     title: { ru: "Продукты", en: "Products" },
     description: {
-      ru: "Продукты, которые я создаю с помощью AI.",
-      en: "Products I build with AI.",
+      ru: "Которые я создаю с помощью AI.",
+      en: "That I build with AI.",
     },
   },
   experience: {
