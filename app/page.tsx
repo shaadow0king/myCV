@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, Bug, MousePointerClick } from "lucide-react";
+import { ArrowDown, ArrowRight, Bug, MousePointerClick } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
 
 type Language = "ru" | "en";
@@ -37,6 +37,14 @@ const copy = {
       en: "The full resume: experience, tools and contacts.",
     },
     aria: { ru: "Скачать резюме в PDF", en: "Download resume as PDF" },
+  },
+  products: {
+    title: { ru: "Продукты", en: "Products" },
+    tag: { ru: "Бесплатно", en: "Free" },
+    description: {
+      ru: "Небольшие бесплатные программы, которые я сделал.",
+      en: "Small free apps I've made.",
+    },
   },
   experience: {
     label: { ru: "Опыт работы", en: "Work experience" },
@@ -665,6 +673,17 @@ export default function Home() {
                   <span className="cv-card-description">{localize(copy.cv.description, language)}</span>
                 </span>
                 <span className="cv-card-open" aria-hidden="true"><ArrowDown size={18} strokeWidth={2} /></span>
+              </a>
+              <a className="cv-card" href={asset("/products/")}>
+                <span className="cv-card-face" aria-hidden="true"><span>APP</span></span>
+                <span className="cv-card-copy">
+                  <span className="cv-card-heading">
+                    <span className="cv-card-title">{localize(copy.products.title, language)}</span>
+                    <span className="cv-card-version">{localize(copy.products.tag, language)}</span>
+                  </span>
+                  <span className="cv-card-description">{localize(copy.products.description, language)}</span>
+                </span>
+                <span className="cv-card-open" aria-hidden="true"><ArrowRight size={18} strokeWidth={2} /></span>
               </a>
             </div>
 

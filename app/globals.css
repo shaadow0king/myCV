@@ -1204,3 +1204,33 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Products page */
+
+.products-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.products-title {
+  margin: 0;
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (width <= 720px) {
+  .header-language.products-language {
+    display: block;
+    top: 22px;
+    left: auto;
+    right: var(--pad);
+  }
+}
