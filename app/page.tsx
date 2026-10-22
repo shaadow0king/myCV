@@ -40,10 +40,9 @@ const copy = {
   },
   products: {
     title: { ru: "Продукты", en: "Products" },
-    tag: { ru: "Бесплатно", en: "Free" },
     description: {
-      ru: "Небольшие бесплатные программы, которые я сделал.",
-      en: "Small free apps I've made.",
+      ru: "Программы и утилиты, которые я сделал.",
+      en: "Apps and utilities I've made.",
     },
   },
   experience: {
@@ -679,7 +678,6 @@ export default function Home() {
                 <span className="cv-card-copy">
                   <span className="cv-card-heading">
                     <span className="cv-card-title">{localize(copy.products.title, language)}</span>
-                    <span className="cv-card-version">{localize(copy.products.tag, language)}</span>
                   </span>
                   <span className="cv-card-description">{localize(copy.products.description, language)}</span>
                 </span>

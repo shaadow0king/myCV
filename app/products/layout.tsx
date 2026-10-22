@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Продукты — Геворк Акопян",
-  description: "Небольшие бесплатные программы: название, что делает, скачать.",
+  description: "Программы и утилиты, которые я сделал.",
   alternates: { canonical: "./" },
 };
 

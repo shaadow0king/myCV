@@ -33,7 +33,7 @@ const products: Product[] = [
 const copy = {
   back: { ru: "Резюме", en: "Resume" },
   title: { ru: "Продукты", en: "Products" },
-  intro: { ru: "Небольшие программы, которые я сделал. Бесплатно.", en: "Small apps I've made. Free." },
+  intro: { ru: "Программы и утилиты, которые я сделал.", en: "Apps and utilities I've made." },
   download: { ru: "Скачать", en: "Download" },
   macOnly: { ru: "Только для Mac", en: "Mac only" },
   langGroup: { ru: "Выбор языка", en: "Language selector" },
