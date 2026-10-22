@@ -56,7 +56,7 @@ async function fetchDownloads(repo: string) {
 const copy = {
   back: { ru: "Резюме", en: "Resume" },
   title: { ru: "Продукты", en: "Products" },
-  intro: { ru: "Программы и утилиты для повседневных задач.", en: "Apps and utilities for everyday tasks." },
+  intro: { ru: "Продукты, которые я создаю с помощью AI.", en: "Products I build with AI." },
   download: { ru: "Скачать", en: "Download" },
   macOnly: { ru: "Только для Mac", en: "Mac only" },
   downloads: { ru: "Скачиваний", en: "Downloads" },
