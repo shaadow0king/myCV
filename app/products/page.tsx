@@ -10,7 +10,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 type Product = {
   name: string;
-  face: string;
+  icon: string; // under public/, shown at 44 px
   platform: Copy;
   description: Copy;
   download: string;
@@ -20,13 +20,13 @@ type Product = {
 const products: Product[] = [
   {
     name: "Mistype",
-    face: "Mt",
+    icon: "/assets/img/products/mistype.png",
     platform: { ru: "macOS 15+", en: "macOS 15+" },
     description: {
       ru: "Исправляет текст, набранный не в той раскладке: ghbdtn → привет. Бесплатно, без подписки.",
       en: "Fixes text typed in the wrong keyboard layout: ghbdtn → привет. Free, no subscription.",
     },
-    download: "https://github.com/shaadow0king/keyboard-switcher/releases/latest/download/Mistype.zip",
+    download: "https://github.com/shaadow0king/keyboard-switcher/releases/latest/download/Mistype.dmg",
   },
 ];
 
@@ -98,7 +98,8 @@ export default function Products() {
               {products.map((product) => (
                 <li key={product.name}>
                   <a className="cv-card" href={product.download} aria-label={`${t(copy.download)} ${product.name}`}>
-                    <span className="cv-card-face" aria-hidden="true"><span>{product.face}</span></span>
+                    {/* eslint-disable-next-line @next/next/no-img-element -- static export, a 44 px icon */}
+                    <img className="products-icon" src={`${basePath}${product.icon}`} alt="" width={44} height={44} />
                     <span className="cv-card-copy">
                       <span className="cv-card-heading">
                         <span className="cv-card-title">{product.name}</span>

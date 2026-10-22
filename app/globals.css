@@ -1223,6 +1223,13 @@ button {
   gap: 5px;
 }
 
+.products-icon {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  margin: 0 6px;
+}
+
 .products-list {
   display: flex;
   flex-direction: column;
