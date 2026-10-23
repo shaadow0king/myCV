@@ -60,6 +60,7 @@ const copy = {
   download: { ru: "Скачать", en: "Download" },
   macOnly: { ru: "Только для Mac", en: "Mac only" },
   downloads: { ru: "Скачиваний", en: "Downloads" },
+  comingSoon: { ru: "Скоро здесь появятся новые приложения.", en: "New apps coming soon." },
   langGroup: { ru: "Выбор языка", en: "Language selector" },
 };
 
@@ -155,6 +156,7 @@ export default function Products() {
                   </a>
                 </li>
               ))}
+              <li className="products-soon">{t(copy.comingSoon)}</li>
             </ul>
           </div>
         </main>

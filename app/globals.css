@@ -1245,6 +1245,20 @@ button {
   list-style: none;
 }
 
+.products-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 66px;
+  padding: 8px 16px;
+  border: 1px dashed #ffffff1f;
+  border-radius: 16px;
+  color: var(--text-mid);
+  font-family: var(--font-sf);
+  font-size: 14px;
+  text-align: center;
+}
+
 @media (width <= 720px) {
   .header-language.products-language {
     display: block;
